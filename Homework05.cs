@@ -4,50 +4,56 @@ namespace NO1
 {
     public class led : IHomework05
     {
+        public string[] value = { "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]" };
+        public int[] inputnum = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         public string DisplayLEDOnScreen(string ledNo)
         {
-            Console.WriteLine("On/Off :" + ledNo);
-            string[] d = { "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "" };
-            int[] num = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-            string number = (" 1  2  3  4  5  6  7  8  9  10");
-            var ww = "[!]";
-            var dd = "[ ]";
-            try
+            string result = null;
+            var YES = "[!]";
+            var NO = "[ ]";
+            if (ledNo == "A")
             {
-                while (true)
+                if (value[9] == NO)
                 {
-                    int input = int.Parse(Console.ReadLine());
-                    input = input - 1;
-                    var hubb = (1 == num[input]);
-                    if (hubb)
+                    value[9] = YES;
+                    foreach (var item in value)
                     {
-                        d[input] = dd;
-                        foreach (var item in d)
-                        {
-                            Console.Write(item);
-                        }
-                        Console.WriteLine();
-                        Console.WriteLine(number);
-                        num[input] = 0;
+                        result += item;
                     }
-                    else
+                }
+                else
+                {
+                    value[9] = NO;
+                    foreach (var item in value)
                     {
-                        d[input] = ww;
-                        foreach (var item in d)
-                        {
-                            Console.Write(item);
-                        }
-                        Console.WriteLine();
-                        Console.WriteLine(number);
-                        num[input] = 1;
+                        result += item;
                     }
                 }
             }
-            catch (System.Exception)
+            else
             {
-                Console.WriteLine("Error Not Font..");
+                var goo = int.Parse(ledNo);
+                goo = goo - 1;
+                if (inputnum[goo] == 1)
+                {
+                    value[goo] = NO;
+                    foreach (var item in value)
+                    {
+                        result += item;
+                    }
+                    inputnum[goo] = 0;
+                }
+                else
+                {
+                    value[goo] = YES;
+                    foreach (var item in value)
+                    {
+                        result += item;
+                    }
+                    inputnum[goo] = 1;
+                }
             }
-            return ledNo;
+            return result;
         }
     }
 }
